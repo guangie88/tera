@@ -508,6 +508,8 @@ impl Tera {
         self.register_filter("upper", string::upper);
         self.register_filter("lower", string::lower);
         self.register_filter("trim", string::trim);
+        self.register_filter("trim_start", string::trim_start);
+        self.register_filter("trim_end", string::trim_end);
         #[cfg(feature = "builtins")]
         self.register_filter("truncate", string::truncate);
         self.register_filter("wordcount", string::wordcount);

@@ -88,6 +88,20 @@ pub fn trim(value: &Value, _: &HashMap<String, Value>) -> Result<Value> {
     Ok(to_value(&s.trim()).unwrap())
 }
 
+/// Strip leading whitespace.
+pub fn trim_start(value: &Value, _: &HashMap<String, Value>) -> Result<Value> {
+    let s = try_get_value!("trim_start", "value", String, value);
+
+    Ok(to_value(&s.trim_start()).unwrap())
+}
+
+/// Strip trailing whitespace.
+pub fn trim_end(value: &Value, _: &HashMap<String, Value>) -> Result<Value> {
+    let s = try_get_value!("trim_end", "value", String, value);
+
+    Ok(to_value(&s.trim_end()).unwrap())
+}
+
 /// Truncates a string to the indicated length.
 ///
 /// # Arguments
@@ -351,6 +365,20 @@ mod tests {
         let result = trim(&to_value("  hello  ").unwrap(), &HashMap::new());
         assert!(result.is_ok());
         assert_eq!(result.unwrap(), to_value("hello").unwrap());
+    }
+
+    #[test]
+    fn test_trim_start() {
+        let result = trim_start(&to_value("  hello  ").unwrap(), &HashMap::new());
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), to_value("hello  ").unwrap());
+    }
+
+    #[test]
+    fn test_trim_end() {
+        let result = trim_end(&to_value("  hello  ").unwrap(), &HashMap::new());
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), to_value("  hello").unwrap());
     }
 
     #[cfg(feature = "builtins")]

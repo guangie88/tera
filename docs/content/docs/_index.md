@@ -766,6 +766,12 @@ If value is "foo  bar", the output will be "Foo  Bar".
 #### trim
 Remove leading and trailing whitespace if the variable is a string.
 
+#### trim_start
+Remove leading whitespace if the variable is a string.
+
+#### trim_end
+Remove trailing whitespace if the variable is a string.
+
 #### truncate
 Only available if the `builtins` feature is enabled.
 
